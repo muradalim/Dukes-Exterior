@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050a11">
+<title>Dukes Staff</title>
+<style>
+:root{--bg:#050a11;--panel:#091522;--panel2:#0b1b2c;--line:#1d3d5d;--blue:#1677ff;--blue2:#53b7ff;--text:#f5f8fc;--muted:#91a7bb;--green:#38d98f;--red:#ff5d6c;--amber:#ffbc4c}
+*{box-sizing:border-box}html{background:var(--bg);color-scheme:dark}body{margin:0;background:radial-gradient(circle at 85% -10%,rgba(22,119,255,.22),transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}.muted{color:var(--muted)}.wrap{width:min(1180px,calc(100% - 28px));margin:auto}
+.top{position:sticky;top:0;z-index:20;background:rgba(5,10,17,.91);backdrop-filter:blur(18px);border-bottom:1px solid rgba(83,183,255,.15)}.topin{height:74px;display:flex;align-items:center;gap:18px}.brand{display:flex;align-items:center;margin-right:auto;text-decoration:none;color:white}.brand img{width:174px;height:54px;object-fit:contain;object-position:left center}.live{display:inline-flex;align-items:center;gap:7px;border:1px solid #21466a;border-radius:999px;padding:8px 11px;color:#8dccff;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.live i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}.signout{border:1px solid #28455f;background:#0b1724;color:#fff;border-radius:11px;padding:9px 12px;font-weight:800}
+main{padding:30px 0 80px}.card{border:1px solid var(--line);background:linear-gradient(155deg,rgba(12,29,47,.95),rgba(6,14,23,.97));border-radius:22px;padding:22px;box-shadow:0 22px 60px rgba(0,0,0,.22)}.auth{width:min(520px,100%);margin:7vh auto}.auth h1{font-size:clamp(2rem,7vw,3.4rem);letter-spacing:-.05em;margin:8px 0}.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:#73bdff}.field{display:grid;gap:7px;margin-top:13px}.field label{font-size:.76rem;font-weight:900;color:#d9e6f1}.field input,.field select,.field textarea{width:100%;border:1px solid #294964;background:#07131f;color:#fff;border-radius:12px;padding:12px 13px;outline:0}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#2b8dff;box-shadow:0 0 0 3px rgba(43,141,255,.12)}
+.btn{border:0;border-radius:12px;min-height:44px;padding:0 15px;font-weight:900}.primary{background:linear-gradient(135deg,#1680ff,#0756c8);color:#fff;box-shadow:0 12px 28px rgba(22,119,255,.22)}.secondary{background:#0c1c2c;color:#dbeaff;border:1px solid #284969}.danger{background:#2a1016;color:#ffacb5;border:1px solid #6c2834}.green{background:#0e3929;color:#8ff1c3;border:1px solid #216c4e}.amber{background:#39270e;color:#ffd78e;border:1px solid #76501d}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.actions .btn{flex:1}.statusline{margin-top:13px;font-size:.82rem;color:#8ea5ba;min-height:20px}
+.apphead{display:flex;gap:16px;align-items:end;justify-content:space-between;margin-bottom:18px}.apphead h1{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.05em;margin:0}.apphead p{margin:5px 0 0;color:var(--muted)}.tabs{display:flex;gap:8px;overflow:auto;padding:5px;border:1px solid #1e3b57;background:#07121e;border-radius:15px;margin-bottom:17px}.tab{white-space:nowrap;border:0;background:transparent;color:#8fa7bc;padding:11px 15px;border-radius:10px;font-weight:900}.tab.active{background:linear-gradient(135deg,#0e68ef,#0751b9);color:white}.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:370px 1fr;gap:16px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sectiontitle{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.sectiontitle h2,.sectiontitle h3{margin:0}.sectiontitle p{margin:4px 0 0;color:var(--muted);font-size:.85rem}.datefilter{border:1px solid #294964;background:#07131f;color:#fff;border-radius:11px;padding:9px 11px}.list{display:grid;gap:10px}.empty{padding:28px 18px;border:1px dashed #2a4a68;border-radius:16px;text-align:center;color:#8299ae}
+.job{border:1px solid #203e5b;background:#071521;border-radius:17px;padding:16px}.jobtop{display:flex;justify-content:space-between;gap:12px;align-items:start}.job h3{margin:0;font-size:1.05rem}.job p{margin:5px 0 0;color:#8fa6bb;font-size:.83rem}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.chip{border:1px solid #264761;background:#0a1a29;border-radius:999px;padding:6px 9px;color:#9fc6e7;font-size:.7rem;font-weight:850}.state{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;font-weight:950}.s-scheduled{background:#132b43;color:#8ac7ff}.s-on_the_way{background:#342609;color:#ffcf74}.s-arrived{background:#18341d;color:#88e9a1}.s-in_progress{background:#143b36;color:#78ebd2}.s-completed{background:#133423;color:#81e8b1}.s-cancelled{background:#3a171e;color:#ff9eaa}.jobactions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.jobactions button,.jobactions a{border:1px solid #294967;background:#0b1c2d;color:#e8f2fb;border-radius:9px;padding:8px 9px;text-decoration:none;font-size:.72rem;font-weight:900}.jobactions .red{border-color:#6a2934;background:#2a1117;color:#ffadb5}.jobactions .blue{border-color:#1e5ea5;background:#0b2b52;color:#9bd1ff}
+.quote{border:1px solid #203e5b;background:#071521;border-radius:17px;padding:17px}.quote h3{margin:0}.quote p{color:#90a8bc;margin:6px 0;font-size:.84rem}.quoteform{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}.quoteform input,.quoteform select{min-width:0;border:1px solid #294964;background:#07131f;color:#fff;border-radius:10px;padding:10px}.quoteform .wide{grid-column:span 2}.quoteform button{grid-column:1/-1}
+.teamrow{display:flex;align-items:center;gap:12px;justify-content:space-between;border:1px solid #203e5b;background:#071521;border-radius:15px;padding:14px}.teamrow b{display:block}.teamrow small{color:#849caf}.teamactions{display:flex;gap:7px;flex-wrap:wrap}.teamactions button{border:1px solid #294967;background:#0b1c2d;color:#e8f2fb;border-radius:9px;padding:8px;font-size:.7rem;font-weight:900}
+.gps{display:inline-flex;align-items:center;gap:8px}.gps i{width:8px;height:8px;border-radius:50%;background:#6e8293}.gps.on i{background:var(--green);box-shadow:0 0 12px var(--green)}.workerbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.workerbar input{border:1px solid #294964;background:#07131f;color:#fff;border-radius:11px;padding:10px}.workerjob{border:1px solid #234766;background:linear-gradient(145deg,#0a1b2c,#07131f);border-radius:18px;padding:17px}.workerjob.current{border-color:#2b89ef;box-shadow:0 0 0 1px rgba(43,137,239,.2),0 18px 45px rgba(0,70,160,.12)}.address{font-size:.93rem;font-weight:800;margin-top:11px}.eta{display:flex;gap:7px;align-items:center;margin-top:11px}.eta input{width:92px;border:1px solid #294964;background:#07131f;color:#fff;border-radius:9px;padding:8px}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;background:#eaf5ff;color:#06111e;padding:10px 14px;border-radius:12px;font-weight:900;z-index:100;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,4,9,.84);z-index:80}.modal.show{display:flex}.modalbox{width:min(760px,100%);max-height:88vh;overflow:auto;background:#081522;border:1px solid #295477;border-radius:20px;padding:18px}.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.photos img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;border:1px solid #284966}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.brand img{width:140px}.apphead{display:block}.live{display:none}.quoteform{grid-template-columns:1fr 1fr}.quoteform .wide{grid-column:1/-1}.photos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.wrap{width:min(100% - 18px,1180px)}.topin{height:66px}.brand img{width:125px}.topin .signout{padding:8px 10px}.card{padding:16px;border-radius:18px}main{padding-top:18px}.twocol,.quoteform{grid-template-columns:1fr}.quoteform .wide{grid-column:auto}.jobtop,.workerbar,.teamrow{align-items:flex-start}.teamrow{display:grid}.actions{display:grid}.actions .btn{width:100%}.photos{grid-template-columns:1fr 1fr}.tabs{border-radius:13px}.tab{padding:10px 12px}.jobactions button,.jobactions a{flex:1;text-align:center}.workerjob .jobactions{display:grid;grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap topin"><a class="brand" href="index.html"><img src="dukes-logo.png" alt="Dukes Exterior Cleaning"></a><span class="live"><i></i> Live system</span><button id="signOut" class="signout hidden" type="button">Sign out</button></div></header>
+<main class="wrap">
+<section id="authView" class="auth card">
+<div class="eyebrow">Dukes staff</div><h1>Staff login.</h1><p class="muted">Owners and crew members use the same secure login.</p>
+<div class="field"><label>Full name <span class="muted">(new accounts)</span></label><input id="authName" autocomplete="name" placeholder="Your name"></div>
+<div class="field"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+<div class="field"><label>Password</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="At least 8 characters"></div>
+<div class="actions"><button id="signIn" class="btn primary" type="button">SIGN IN</button><button id="signUp" class="btn secondary" type="button">CREATE ACCOUNT</button></div>
+<div id="authStatus" class="statusline"></div>
+</section>
+
+<section id="pendingView" class="auth card hidden">
+<div class="eyebrow">Account created</div><h1 id="pendingTitle">Waiting for access.</h1>
+<p class="muted">Crew accounts stay locked until the Dukes owner approves them.</p>
+<div id="ownerClaimBox">
+  <div class="field"><label>Owner setup code</label><input id="ownerCode" inputmode="numeric" autocomplete="one-time-code" placeholder="Owner only"></div>
+  <div class="actions"><button id="claimOwner" class="btn primary" type="button">CLAIM OWNER ACCOUNT</button></div>
+  <div class="statusline">Only use this if this is the main Dukes owner account. The code works once.</div>
+</div>
+</section>
+
+<section id="adminView" class="hidden">
+<div class="apphead"><div><div class="eyebrow">Dukes operations</div><h1>Run the day.</h1><p>Quotes, schedule, crews, tracking, and referrals use the live database.</p></div><div id="adminIdentity" class="muted"></div></div>
+<div class="tabs">
+<button class="tab active" data-tab="schedule">Schedule</button>
+<button class="tab" data-tab="quotes">Quotes <span id="quoteBadge"></span></button>
+<button class="tab" data-tab="team">Team</button>
+<button class="tab" data-tab="crew">My Crew View</button>
+</div>
+
+<div class="panel active" data-panel="schedule">
+<div class="grid">
+<div class="card">
+<div class="sectiontitle"><div><h2>Add a job</h2><p>Route order controls the customer's “stops away” count.</p></div></div>
+<div class="twocol"><div class="field"><label>Date</label><input id="jobDate" type="date"></div><div class="field"><label>Time</label><input id="jobTime" type="time" value="09:00"></div></div>
+<div class="field"><label>Customer</label><input id="jobCustomer" placeholder="Customer name"></div>
+<div class="field"><label>Phone</label><input id="jobPhone" inputmode="tel" placeholder="(973) 555-1234"></div>
+<div class="field"><label>Address</label><input id="jobAddress" placeholder="Street, town, NJ"></div>
+<div class="field"><label>Services</label><input id="jobServices" placeholder="Window Cleaning, Gutter Cleaning"></div>
+<div class="twocol"><div class="field"><label>Assign worker</label><select id="jobWorker"><option value="">Unassigned</option></select></div><div class="field"><label>Crew name</label><input id="jobCrew" placeholder="Crew 1"></div></div>
+<div class="twocol"><div class="field"><label>Arrival window</label><input id="jobWindow" placeholder="9:00–10:00 AM"></div><div class="field"><label>Route order</label><input id="jobOrder" type="number" min="1" value="1"></div></div>
+<div class="field"><label>Price <span class="muted">(for referral rewards)</span></label><input id="jobPrice" type="number" min="0" step=".01" placeholder="250"></div>
+<div class="field"><label>Notes</label><textarea id="jobNotes" placeholder="Gate, parking, equipment notes..."></textarea></div>
+<div class="actions"><button id="addJob" class="btn primary" type="button">ADD TO SCHEDULE</button></div>
+<div id="jobStatus" class="statusline"></div>
+</div>
+<div class="card">
+<div class="sectiontitle"><div><h2>Schedule</h2><p>Live jobs for the selected day.</p></div><input id="scheduleDate" class="datefilter" type="date"></div>
+<div id="adminJobs" class="list"></div>
+</div>
+</div>
+</div>
+
+<div class="panel" data-panel="quotes">
+<div class="card">
+<div class="sectiontitle"><div><h2>Quote requests</h2><p>New website submissions appear here automatically.</p></div><button id="refreshQuotes" class="btn secondary" type="button">REFRESH</button></div>
+<div id="quoteList" class="list"></div>
+</div>
+</div>
+
+<div class="panel" data-panel="team">
+<div class="card">
+<div class="sectiontitle"><div><h2>Team access</h2><p>Workers create an account here first. Then approve them below.</p></div></div>
+<div id="teamList" class="list"></div>
+</div>
+</div>
+
+<div class="panel" data-panel="crew"><div id="adminCrewMount"></div></div>
+</section>
+
+<section id="workerView" class="hidden">
+<div class="apphead"><div><div class="eyebrow">Dukes crew</div><h1>Today's route.</h1><p>Update each stop so customers see accurate live status.</p></div><div id="workerIdentity" class="muted"></div></div>
+<div id="workerCrewMount"></div>
+</section>
+</main>
+
+<div id="photoModal" class="modal"><div class="modalbox"><div class="sectiontitle"><div><h2>Quote photos</h2><p>Private customer uploads.</p></div><button id="closePhotos" class="btn secondary">CLOSE</button></div><div id="photoGrid" class="photos"></div></div></div>
+<div id="toast" class="toast">Saved</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://newgurlvqynyklqqydcx.supabase.co';
+const SUPABASE_KEY='sb_publishable_bmuIcD18ypWc1Il520l6Pg_abUh_85F';
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+let session=null,profile=null,workers=[],gpsWatch=null,lastQuoteCount=0,refreshTimer=null;
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>new Date().toLocaleDateString('en-CA');
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function statusLabel(s){return({scheduled:'Scheduled',on_the_way:'On My Way',arrived:'Arrived',in_progress:'In Progress',completed:'Completed',cancelled:'Cancelled'}[s]||s)}
+function timeLabel(v){if(!v)return'';const [h,m]=String(v).slice(0,5).split(':').map(Number),d=new Date();d.setHours(h,m||0,0,0);return d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
+function baseCustomerUrl(){return new URL('index.html',location.href)}
+function customerLink(job,portalToken){const u=baseCustomerUrl();u.searchParams.set('track',job.tracking_token);if(portalToken)u.searchParams.set('portal_token',portalToken);return u.toString()}
+async function copy(text){try{await navigator.clipboard.writeText(text)}catch{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}toast('Link copied')}
+
+function setView(name){
+  ['authView','pendingView','adminView','workerView'].forEach(id=>$(id).classList.add('hidden'));
+  $(name).classList.remove('hidden');
+  $('signOut').classList.toggle('hidden',name==='authView');
+}
+async function getProfile(){
+  if(!session?.user)return null;
+  const {data,error}=await db.from('staff_profiles').select('*').eq('user_id',session.user.id).maybeSingle();
+  if(error)throw error;return data;
+}
+async function routeUser(){
+  profile=await getProfile();
+  if(!profile){setView('pendingView');return}
+  if(!profile.active){setView('pendingView');$('pendingTitle').textContent='Account disabled.';$('ownerClaimBox').classList.add('hidden');return}
+  if(profile.role==='admin'){
+    setView('adminView');$('adminIdentity').textContent=profile.full_name||profile.email||'';await loadAdmin();startRefresh();
+  }else if(profile.role==='worker'){
+    setView('workerView');$('workerIdentity').textContent=profile.full_name||profile.email||'';renderCrewShell('workerCrewMount');await loadWorkerJobs();startRefresh();
+  }else{
+    setView('pendingView');$('pendingTitle').textContent='Waiting for access.';$('ownerClaimBox').classList.remove('hidden');
+  }
+}
+function startRefresh(){clearInterval(refreshTimer);refreshTimer=setInterval(async()=>{try{if(profile?.role==='admin'){await loadJobs();await loadQuotes();await loadTeam()}else if(profile?.role==='worker')await loadWorkerJobs()}catch(e){console.error(e)}},15000)}
+
+$('signIn').onclick=async()=>{
+  $('authStatus').textContent='Signing in…';
+  const {error}=await db.auth.signInWithPassword({email:$('authEmail').value.trim(),password:$('authPassword').value});
+  $('authStatus').textContent=error?error.message:'';
+};
+$('signUp').onclick=async()=>{
+  const email=$('authEmail').value.trim(),password=$('authPassword').value,name=$('authName').value.trim();
+  if(!name||!email||password.length<8){$('authStatus').textContent='Add your name, email, and a password with at least 8 characters.';return}
+  $('authStatus').textContent='Creating account…';
+  const {data,error}=await db.auth.signUp({email,password,options:{data:{full_name:name}}});
+  if(error){$('authStatus').textContent=error.message;return}
+  $('authStatus').textContent=data.session?'Account created.':'Account created. Check your email to confirm it, then sign in.';
+};
+$('signOut').onclick=async()=>{clearInterval(refreshTimer);if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);await db.auth.signOut();setView('authView')};
+$('claimOwner').onclick=async()=>{
+  const code=$('ownerCode').value.trim();if(!code){alert('Enter the owner setup code.');return}
+  $('claimOwner').disabled=true;
+  const {error}=await db.rpc('claim_owner',{p_code:code});
+  $('claimOwner').disabled=false;
+  if(error){alert(error.message);return}
+  toast('Owner account activated');await routeUser();
+};
+
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=async()=>{
+  document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));
+  document.querySelectorAll('[data-panel]').forEach(p=>p.classList.toggle('active',p.dataset.panel===b.dataset.tab));
+  if(b.dataset.tab==='quotes')await loadQuotes();
+  if(b.dataset.tab==='team')await loadTeam();
+  if(b.dataset.tab==='crew'){renderCrewShell('adminCrewMount');await loadWorkerJobs(true)}
+});
+
+async function loadWorkers(){
+  const {data,error}=await db.from('staff_profiles').select('*').eq('role','worker').eq('active',true).order('full_name');
+  if(error)throw error;workers=data||[];
+  const sel=$('jobWorker'),old=sel.value;
+  sel.innerHTML='<option value="">Unassigned</option>'+workers.map(w=>`<option value="${w.user_id}">${esc(w.full_name||w.email)}</option>`).join('');
+  if([...sel.options].some(o=>o.value===old))sel.value=old;
+}
+async function loadAdmin(){if(!$('jobDate').value)$('jobDate').value=today();if(!$('scheduleDate').value)$('scheduleDate').value=today();await loadWorkers();await Promise.all([loadJobs(),loadQuotes(),loadTeam()])}
+
+$('addJob').onclick=async()=>{
+  const customer=$('jobCustomer').value.trim(),phone=$('jobPhone').value.trim(),address=$('jobAddress').value.trim(),services=$('jobServices').value.split(',').map(x=>x.trim()).filter(Boolean);
+  if(!customer||phone.replace(/\D/g,'').length<10||!address||!services.length){$('jobStatus').textContent='Customer, valid phone, address, and at least one service are required.';return}
+  $('addJob').disabled=true;$('jobStatus').textContent='Saving…';
+  const {data,error}=await db.rpc('admin_create_job',{
+    p_customer_name:customer,p_customer_phone:phone,p_address:address,p_services:services,
+    p_scheduled_date:$('jobDate').value,p_scheduled_time:$('jobTime').value||null,p_arrival_window:$('jobWindow').value.trim()||null,
+    p_assigned_worker:$('jobWorker').value||null,p_assigned_crew:$('jobCrew').value.trim()||null,p_route_order:Number($('jobOrder').value||1),
+    p_quoted_price:$('jobPrice').value?Number($('jobPrice').value):null,p_notes:$('jobNotes').value.trim()||null
+  });
+  $('addJob').disabled=false;
+  if(error){$('jobStatus').textContent=error.message;return}
+  $('jobStatus').textContent=data.discount_amount>0?`Saved. Referral discount: $${data.discount_amount}.`:'Saved.';
+  ['jobCustomer','jobPhone','jobAddress','jobServices','jobWindow','jobCrew','jobPrice','jobNotes'].forEach(id=>$(id).value='');
+  $('scheduleDate').value=$('jobDate').value;await loadJobs();toast('Job scheduled');
+};
+
+async function loadJobs(){
+  const date=$('scheduleDate').value||today();
+  const {data,error}=await db.from('jobs').select('*,customers(portal_token,referral_code)').eq('scheduled_date',date).order('route_order').order('scheduled_time');
+  if(error){$('adminJobs').innerHTML=`<div class="empty">${esc(error.message)}</div>`;return}
+  const jobs=data||[];
+  if(!jobs.length){$('adminJobs').innerHTML='<div class="empty">No jobs scheduled for this day.</div>';return}
+  $('adminJobs').innerHTML=jobs.map(j=>{
+    const worker=workers.find(w=>w.user_id===j.assigned_worker);
+    return `<article class="job" data-id="${j.id}">
+      <div class="jobtop"><div><h3>#${j.route_order} • ${esc(j.customer_name)}</h3><p>${esc((j.services||[]).join(', '))} • ${esc(j.address)}</p></div><span class="state s-${j.status}">${statusLabel(j.status)}</span></div>
+      <div class="chips"><span class="chip">${timeLabel(j.scheduled_time)||'Time TBD'}</span><span class="chip">${esc(worker?.full_name||j.assigned_crew||'Unassigned')}</span>${j.arrival_window?`<span class="chip">${esc(j.arrival_window)}</span>`:''}${j.discount_amount?`<span class="chip">$${Number(j.discount_amount).toFixed(0)} referral discount</span>`:''}</div>
+      <div class="jobactions">
+        <button data-move="up">↑</button><button data-move="down">↓</button>
+        <button class="blue" data-link='${esc(JSON.stringify({tracking_token:j.tracking_token,portal_token:j.customers?.portal_token||''}))}'>CUSTOMER LINK</button>
+        <button data-status="scheduled">SCHEDULED</button><button data-status="on_the_way">ON WAY</button><button data-status="arrived">ARRIVED</button><button data-status="in_progress">START</button><button data-status="completed">COMPLETE</button><button class="red" data-status="cancelled">CANCEL</button>
+      </div>
+    </article>`;
+  }).join('');
+  $('adminJobs').querySelectorAll('[data-status]').forEach(b=>b.onclick=()=>adminStatus(b.closest('.job').dataset.id,b.dataset.status));
+  $('adminJobs').querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>moveJob(jobs,b.closest('.job').dataset.id,b.dataset.move));
+  $('adminJobs').querySelectorAll('[data-link]').forEach(b=>b.onclick=()=>{const x=JSON.parse(b.dataset.link);const fake={tracking_token:x.tracking_token};copy(customerLink(fake,x.portal_token))});
+}
+async function adminStatus(id,status){
+  let eta=null;if(status==='on_the_way'){const raw=prompt('Estimated minutes until arrival?','20');if(raw===null)return;eta=Number(raw)||null}
+  const {error}=await db.rpc('admin_update_job',{p_job_id:id,p_status:status,p_eta_minutes:eta});
+  if(error){alert(error.message);return}await loadJobs();toast(statusLabel(status));
+}
+async function moveJob(jobs,id,dir){
+  const i=jobs.findIndex(j=>j.id===id),ni=dir==='up'?i-1:i+1;if(i<0||ni<0||ni>=jobs.length)return;
+  const a=jobs[i],b=jobs[ni],ao=a.route_order,bo=b.route_order;
+  let r=await db.rpc('admin_update_job',{p_job_id:a.id,p_route_order:bo});if(r.error){alert(r.error.message);return}
+  r=await db.rpc('admin_update_job',{p_job_id:b.id,p_route_order:ao});if(r.error){alert(r.error.message);return}
+  await loadJobs();
+}
+$('scheduleDate').onchange=loadJobs;
+
+async function loadQuotes(){
+  const {data,error}=await db.from('quotes').select('*,customers(name,phone,email,portal_token,referral_code)').order('created_at',{ascending:false}).limit(100);
+  if(error){$('quoteList').innerHTML=`<div class="empty">${esc(error.message)}</div>`;return}
+  const quotes=data||[],newCount=quotes.filter(q=>q.status==='new').length;
+  $('quoteBadge').textContent=newCount?`(${newCount})`:'';
+  if(lastQuoteCount&&newCount>lastQuoteCount&&Notification.permission==='granted')new Notification('New Dukes quote',{body:'A new website quote request came in.'});
+  lastQuoteCount=newCount;
+  if(!quotes.length){$('quoteList').innerHTML='<div class="empty">No quote requests yet.</div>';return}
+  $('quoteList').innerHTML=quotes.map(q=>`<article class="quote" data-id="${q.id}">
+    <div class="jobtop"><div><h3>${esc(q.customers?.name||'Customer')}</h3><p>${esc(q.customers?.phone||'')} ${q.customers?.email?'• '+esc(q.customers.email):''}</p></div><span class="state s-${q.status==='scheduled'?'completed':'scheduled'}">${esc(q.status)}</span></div>
+    <p><b>${esc((q.services||[]).join(', '))}</b></p><p>${esc(q.address||q.town||'Address not provided')} • ${esc(q.property_type||'Property')} • ${esc(q.timing||'Timing flexible')}</p>
+    ${q.notes?`<p>${esc(q.notes)}</p>`:''}${q.referral_code?`<div class="chips"><span class="chip">Referral: ${esc(q.referral_code)}</span></div>`:''}
+    <div class="jobactions"><button data-photos>PHOTOS</button><button data-contacted>MARK CONTACTED</button></div>
+    <div class="quoteform">
+      <input data-date type="date" value="${today()}"><input data-time type="time" value="09:00"><input data-price type="number" min="0" step=".01" placeholder="Price">
+      <input class="wide" data-window placeholder="Arrival window"><select data-worker><option value="">Unassigned</option>${workers.map(w=>`<option value="${w.user_id}">${esc(w.full_name||w.email)}</option>`).join('')}</select>
+      <button class="btn primary" data-schedule type="button">SCHEDULE THIS QUOTE</button>
+    </div>
+  </article>`).join('');
+  $('quoteList').querySelectorAll('[data-contacted]').forEach(b=>b.onclick=()=>setQuoteStatus(b.closest('.quote').dataset.id,'contacted'));
+  $('quoteList').querySelectorAll('[data-photos]').forEach(b=>b.onclick=()=>viewQuotePhotos(b.closest('.quote').dataset.id));
+  $('quoteList').querySelectorAll('[data-schedule]').forEach(b=>b.onclick=()=>scheduleQuote(b.closest('.quote')));
+}
+$('refreshQuotes').onclick=loadQuotes;
+async function setQuoteStatus(id,status){const {error}=await db.rpc('admin_set_quote_status',{p_quote_id:id,p_status:status});if(error)alert(error.message);else{toast('Quote updated');await loadQuotes()}}
+async function scheduleQuote(card){
+  const id=card.dataset.id,date=card.querySelector('[data-date]').value,time=card.querySelector('[data-time]').value||null,price=card.querySelector('[data-price]').value,windowText=card.querySelector('[data-window]').value.trim()||null,worker=card.querySelector('[data-worker]').value||null;
+  if(!date){alert('Choose a date.');return}
+  const {data,error}=await db.rpc('admin_create_job_from_quote',{p_quote_id:id,p_scheduled_date:date,p_scheduled_time:time,p_arrival_window:windowText,p_assigned_worker:worker,p_assigned_crew:null,p_route_order:1,p_quoted_price:price?Number(price):null,p_notes:null});
+  if(error){alert(error.message);return}
+  toast(data.discount_amount>0?`Scheduled • $${data.discount_amount} referral discount`:'Scheduled');
+  $('scheduleDate').value=date;await Promise.all([loadQuotes(),loadJobs()]);
+}
+async function viewQuotePhotos(quoteId){
+  $('photoGrid').innerHTML='<div class="empty">Loading…</div>';$('photoModal').classList.add('show');
+  const {data,error}=await db.storage.from('quote-photos').list(quoteId,{limit:30,sortBy:{column:'created_at',order:'asc'}});
+  if(error){$('photoGrid').innerHTML=`<div class="empty">${esc(error.message)}</div>`;return}
+  const files=(data||[]).filter(x=>x.name&&!x.name.startsWith('.'));
+  if(!files.length){$('photoGrid').innerHTML='<div class="empty">No photos on this quote.</div>';return}
+  const urls=[];
+  for(const f of files){const r=await db.storage.from('quote-photos').createSignedUrl(`${quoteId}/${f.name}`,900);if(r.data?.signedUrl)urls.push(r.data.signedUrl)}
+  $('photoGrid').innerHTML=urls.map(u=>`<a href="${esc(u)}" target="_blank" rel="noopener"><img src="${esc(u)}" alt="Customer property photo"></a>`).join('');
+}
+$('closePhotos').onclick=()=>$('photoModal').classList.remove('show');
+$('photoModal').onclick=e=>{if(e.target===$('photoModal'))$('photoModal').classList.remove('show')};
+
+async function loadTeam(){
+  const {data,error}=await db.from('staff_profiles').select('*').order('created_at');
+  if(error){$('teamList').innerHTML=`<div class="empty">${esc(error.message)}</div>`;return}
+  const rows=data||[];
+  $('teamList').innerHTML=rows.map(p=>`<div class="teamrow" data-id="${p.user_id}"><div><b>${esc(p.full_name||p.email||'Staff')}</b><small>${esc(p.email||'')} • ${esc(p.role)} • ${p.active?'active':'disabled'}</small></div><div class="teamactions">${p.user_id===session.user.id?'':`<button data-worker>MAKE WORKER</button><button data-toggle>${p.active?'DISABLE':'ENABLE'}</button>`}</div></div>`).join('');
+  $('teamList').querySelectorAll('[data-worker]').forEach(b=>b.onclick=()=>setStaff(b.closest('.teamrow').dataset.id,'worker',true));
+  $('teamList').querySelectorAll('[data-toggle]').forEach(b=>{const row=rows.find(x=>x.user_id===b.closest('.teamrow').dataset.id);b.onclick=()=>setStaff(row.user_id,row.role,!row.active)});
+}
+async function setStaff(id,role,active){const {error}=await db.rpc('admin_set_staff',{p_user_id:id,p_role:role,p_active:active,p_full_name:null,p_phone:null});if(error)alert(error.message);else{toast('Team access updated');await Promise.all([loadTeam(),loadWorkers()])}}
+
+function renderCrewShell(mountId){
+  const m=$(mountId);if(m.dataset.ready)return;m.dataset.ready='1';
+  m.innerHTML=`<div class="card"><div class="workerbar"><div><h2 style="margin:0">Route</h2><p class="muted" style="margin:4px 0 0">Customers update from these status buttons.</p></div><div><input id="${mountId}Date" type="date" value="${today()}"></div></div>
+  <div class="actions" style="margin-top:0"><button class="btn secondary gps" id="${mountId}Gps" type="button"><i></i><span>START LOCATION SHARING</span></button></div><div id="${mountId}List" class="list" style="margin-top:14px"></div></div>`;
+  $(mountId+'Date').onchange=()=>loadWorkerJobs(profile?.role==='admin');
+  $(mountId+'Gps').onclick=()=>toggleGps(mountId);
+}
+async function loadWorkerJobs(adminMode=false){
+  const mountId=adminMode?'adminCrewMount':'workerCrewMount';if(!$(mountId).dataset.ready)renderCrewShell(mountId);
+  const date=$(mountId+'Date').value||today();
+  let q=db.from('jobs').select('*').eq('scheduled_date',date).order('route_order').order('scheduled_time');
+  if(!adminMode)q=q.eq('assigned_worker',session.user.id);
+  const {data,error}=await q;
+  const list=$(mountId+'List');if(error){list.innerHTML=`<div class="empty">${esc(error.message)}</div>`;return}
+  const jobs=data||[];window.__dukesCrewJobs=jobs;
+  if(!jobs.length){list.innerHTML='<div class="empty">No jobs assigned for this date.</div>';return}
+  const firstOpen=jobs.find(j=>!['completed','cancelled'].includes(j.status))?.id;
+  list.innerHTML=jobs.map(j=>`<article class="workerjob ${j.id===firstOpen?'current':''}" data-id="${j.id}">
+    <div class="jobtop"><div><h3>#${j.route_order} • ${esc(j.customer_name)}</h3><p>${esc((j.services||[]).join(', '))} • ${timeLabel(j.scheduled_time)||'Time TBD'}</p></div><span class="state s-${j.status}">${statusLabel(j.status)}</span></div>
+    <div class="address">${esc(j.address)}</div>
+    <div class="eta"><label class="muted">ETA min</label><input data-eta type="number" min="1" max="240" value="${j.eta_minutes||20}"></div>
+    <div class="jobactions"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(j.address)}" target="_blank" rel="noopener">DIRECTIONS</a><button class="blue" data-status="on_the_way">ON MY WAY</button><button data-status="arrived">ARRIVED</button><button data-status="in_progress">START JOB</button><button data-status="completed">COMPLETE</button></div>
+  </article>`).join('');
+  list.querySelectorAll('[data-status]').forEach(b=>b.onclick=()=>workerStatus(b.closest('.workerjob'),b.dataset.status));
+}
+async function workerStatus(card,status){
+  const eta=status==='on_the_way'?Number(card.querySelector('[data-eta]').value||20):null;
+  const {error}=await db.rpc('worker_set_job_status',{p_job_id:card.dataset.id,p_status:status,p_eta_minutes:eta});
+  if(error){alert(error.message);return}toast(statusLabel(status));await loadWorkerJobs(profile?.role==='admin');
+}
+function toggleGps(mountId){
+  const btn=$(mountId+'Gps');
+  if(gpsWatch!==null){navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;btn.classList.remove('on');btn.querySelector('span').textContent='START LOCATION SHARING';toast('Location sharing stopped');return}
+  if(!navigator.geolocation){alert('Location sharing is not supported on this device.');return}
+  gpsWatch=navigator.geolocation.watchPosition(async pos=>{
+    const jobs=window.__dukesCrewJobs||[],active=jobs.find(j=>['on_the_way','arrived','in_progress'].includes(j.status))||jobs.find(j=>!['completed','cancelled'].includes(j.status));
+    if(!active)return;
+    const {error}=await db.rpc('worker_update_location',{p_job_id:active.id,p_lat:pos.coords.latitude,p_lng:pos.coords.longitude,p_accuracy:pos.coords.accuracy});
+    if(error){console.error(error);return}
+    btn.classList.add('on');btn.querySelector('span').textContent='LOCATION SHARING ON';
+  },err=>{alert('Location permission was not granted.');gpsWatch=null},{enableHighAccuracy:true,maximumAge:10000,timeout:15000});
+}
+
+if('Notification'in window&&Notification.permission==='default'){
+  // Ask only after admin interacts with Quotes, not on page load.
+  document.querySelector('[data-tab="quotes"]').addEventListener('click',()=>Notification.requestPermission(),{once:true});
+}
+
+db.auth.onAuthStateChange(async(_event,s)=>{session=s;if(!s){setView('authView');return}try{await routeUser()}catch(e){console.error(e);alert(e.message)}});
+(async()=>{const {data}=await db.auth.getSession();session=data.session;if(session)await routeUser();else setView('authView')})();
+</script>
+</body></html>
